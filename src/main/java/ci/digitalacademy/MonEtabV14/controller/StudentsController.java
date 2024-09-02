@@ -60,5 +60,6 @@ public class StudentsController {
         log.debug("Request to delete student {}", id);
         studentService.delete(id);
         return "redirect:/students";
+
     }
 }
