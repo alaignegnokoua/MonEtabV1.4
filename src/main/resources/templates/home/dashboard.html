@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" th:href="@{/student.css}">
+        <title>Tableau de bord</title>
+    </head>
+<body>
+<div class="container">
+    <!-- Barre latérale -->
+    <aside class="sidebar" th:insert="fragments/fragment :: sidebar">
+
+    </aside>
+
+    <!-- Contenu principal -->
+    <div class="main-content">
+        <h1>Tableau de bord</h1>
+
+        <!-- Cartes d'information -->
+        <div class="info-cards">
+            <div class="info-card">
+                <h2>Nombre d'élèves</h2>
+                <p>750</p>
+            </div>
+            <div class="info-card">
+                <h2>Nombre de professeurs</h2>
+                <p>35</p>
+            </div>
+            <div class="info-card">
+                <h2>Nombre d'utilisateurs</h2>
+                <p>30</p>
+            </div>
+        </div>
+
+        <!-- Diagramme circulaire pour la répartition des élèves par genre -->
+        <div class="chart-container">
+            <canvas id="genderChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Inclusion de Chart.js pour le diagramme circulaire -->
+
+
+<!-- Inclusion de Font Awesome pour les icônes -->
+<th:block th:insert="fragments/fragment :: jscript"></th:block>
+</body>
+</html>

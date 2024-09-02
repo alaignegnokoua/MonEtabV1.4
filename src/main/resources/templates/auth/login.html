@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/login.css}">
+    <title>Connexion</title>
+</head>
+<body>
+<!-- Conteneur central de la boîte de connexion -->
+<div class="login-container">
+    <!-- Titre de la page de connexion -->
+    <h1>Mon ETAB</h1>
+    <!-- Formulaire de connexion -->
+    <form >
+        <!-- Champ pour l'identifiant -->
+        <input type="text" id="identifiant" placeholder="Identifiant" required>
+        <!-- Champ pour le mot de passe -->
+        <input type="password" id="mot-de-passe" placeholder="Mot de passe" required>
+        <!-- Bouton de soumission du formulaire -->
+        <button type="submit">
+            <a th:href="@{/home}">Connexion</a></button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+
+
+
+<aside th:fragment="sidebar">
+    <h2>Mon ETAB</h2>
+    <nav>
+        <ul>
+            <li><a th:href="@{/students}">&#x1F466;</i> Élèves</a></li>
+            <li><a th:href="@{/teachers}"><i class="icon-professeurs">&#x1F464;</i> Professeurs</a></li>
+            <li><a th:href="@{/users}"><i class="icon-utilisateurs">&#x1F465;</i> Utilisateurs</a></li>
+            <li><a th:href="@{/reports}"><i class="icon-rapport">&#x1F4C4;</i> Rapport</a></li>
+        </ul>
+    </nav>
+    <div class="logout">
+        <a th:href="@{/login}"><i class="icon-deconnexion">&#x1F6AA;</i> Déconnexion</a>
+    </div>
+</aside>
+
+<th:block th:fragment="jscript">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script th:src="@{/home.js}"></script>
+</th:block>

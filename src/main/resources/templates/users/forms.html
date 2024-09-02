@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/ajouter_user.css}">
+    <title>Add user</title>
+</head>
+<body>
+<aside class="sidebar">
+    <h2>Mon ETAB</h2>
+    <nav>
+        <ul>
+            <li><a th:href="@{/students}">&#x1F466;</i> Élèves</a></li>
+            <li><a th:href="@{/teachers}"><i class="icon-professeurs">&#x1F464;</i> Professeurs</a></li>
+            <li><a th:href="@{/users}"><i class="icon-utilisateurs">&#x1F465;</i> Utilisateurs</a></li>
+            <li><a th:href="@{/reports}"><i class="icon-rapport">&#x1F4C4;</i> Rapport</a></li>
+        </ul>
+    </nav>
+    <div class="logout">
+        <a th:href="@{/login}"><i class="icon-deconnexion">&#x1F6AA;</i> Déconnexion</a>
+    </div>
+</aside>
+
+    <!-- Contenu principal -->
+    <div class="main-content">
+        <a th:href="@{/users}">
+            <button class="retour">Retour</button>
+        </a>
+        <!--<h1 th:text="${user.id == null} ? 'Ajouter un Utilisateur' : 'Modifier un Utilisateur'"></h1>-->
+        <form th:object="${user}" th:action="@{/users}" method="Post">
+
+            <input th:field="${user.id}" type="text" hidden>
+
+            <label for="pseudo">Pseudo:</label>
+            <input type="text" th:field="*{pseudo}" id="pseudo" name="pseudo" placeholder="Entrez le pseudo">
+
+            <label for="password">Password:</label>
+            <input type="text" th:field="*{password}" id="password" name="pseudo" placeholder="Mot de passe">
+
+            <label for="confirmPassword">Confirmer Password:</label>
+            <input type="text" id="confirmPassword" name="confirmPassword" placeholder="Confirmer mot de passe">
+
+            <div class="btn-container">
+                <button type="button" class="btn cancel">Annuler</button>
+                <button type="submit" class="btn save">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Inclusion de Font Awesome pour les icônes -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<!-- JavaScript -->
+<script>
+    document.getElementById('addUserForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Logique pour ajouter l'utilisateur ici
+        alert('Utilisateur ajouté avec succès !');
+    });
+
+    // Fonctionnalité du bouton "Annuler"
+    document.querySelector('.btn.cancel').addEventListener('click', function() {
+        // Redirection ou réinitialisation du formulaire
+        document.getElementById('addUserForm').reset();
+    });
+</script>
+</body>
+</html>

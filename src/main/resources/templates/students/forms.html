@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/ajouter_student.css}">
+    <title>Ajouter élève</title>
+</head>
+<body>
+<!-- Conteneur principal -->
+<div class="container">
+    <!-- Menu latéral -->
+    <aside class="sidebar">
+        <h2>Mon ETAB</h2>
+        <nav>
+            <ul>
+                <li><a th:href="@{/students}">&#x1F466;</i> Élèves</a></li>
+                <li><a th:href="@{/teachers}"><i class="icon-professeurs">&#x1F464;</i> Professeurs</a></li>
+                <li><a th:href="@{/users}"><i class="icon-utilisateurs">&#x1F465;</i> Utilisateurs</a></li>
+                <li><a th:href="@{/reports}"><i class="icon-rapport">&#x1F4C4;</i> Rapport</a></li>
+            </ul>
+        </nav>
+        <div class="logout">
+            <a th:href="@{/login}"><i class="icon-deconnexion">&#x1F6AA;</i> Déconnexion</a>
+        </div>
+    </aside>
+
+    <!-- Contenu principal -->
+    <main class="main-content">
+        <a th:href="@{/students}">
+            <button class="retour">Retour</button>
+        </a>
+        <h1 th:text="${student.id == null} ? 'Ajouter élève' : 'Modifier élève'"></h1>
+        <!-- Formulaire pour ajouter un élève -->
+        <form th:object="${student}" th:action="@{/students}"  method="Post">
+            <input th:field="${student.id}" type="text" hidden>
+            <div class="form-group">
+                <label for="nom">Nom</label>
+                <input th:field="*{firstName}" type="text" id="nom" name="nom" placeholder="Entrez le nom">
+            </div>
+            <div class="form-group">
+                <label for="prenom">Prénom</label>
+                <input th:field="*{lastName}" type="text" id="prenom" name="prenom" placeholder="Entrez le prénom">
+            </div>
+            <div class="form-group">
+                <label>Genre</label>
+                <label for="homme">Homme</label>
+                <input th:field="*{gender}" type="radio" id="homme" name="genre" value="MALE">
+                <label for="femme">Femme</label>
+                <input th:field="*{gender}" type="radio" id="femme" name="genre" value="FEMALE">
+                <label for="other">Autre</label>
+                <input th:field="*{gender}" type="radio" id="other" name="genre" value="OTHER">
+            </div>
+            <div class="form-group">
+                <label for="matricule">Matricule</label>
+                <input th:field="*{matricule}" type="text" id="matricule" name="matricule" placeholder="Entrez le matricule">
+            </div>
+            <!--<div class="form-group">
+                <label for="date-naissance">Date de Naissance</label>
+                <input th:field="*{dateNaissance}" type="date" id="date-naissance" name="date-naissance">
+            </div>-->
+            <div class="form-group">
+                <label for="classe">Classe</label>
+                <select id="classe"  name="classe">
+                    <option value="6e">6ème</option>
+                    <option value="5e">5ème</option>
+                    <option value="4e">4ème</option>
+                    <option value="3e">3ème</option>
+                    <option value="2nde">2nde</option>
+                    <option value="1ere">1ère</option>
+                    <option value="Tle">Terminale</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber">Numéro:</label>
+                <input th:field="*{phoneNumber}" type="tel" id="phoneNumber" name="phoneNumber" placeholder="Entrez le numéro">
+            </div>
+            <div class="form-group">
+                <label for="phoneNumberFather">Numéro du père:</label>
+                <input th:field="*{phoneNumberFather}" type="tel" id="phoneNumberFather" name="phoneNumberFather" placeholder="Entrez le numéro du père">
+            </div>
+            <div class="form-group">
+                <label for="ville">Ville</label>
+                <input type="text" id="ville" name="ville" placeholder="Entrez la ville">
+            </div>
+            <!-- Boutons Annuler et Enregistrer -->
+            <div class="form-actions">
+                <button class="btn-annuler">Annuler</button>
+                <button class="btn-enregistrer">Enregistrer</button>
+            </div>
+        </form>
+    </main>
+</div>
+
+<script>
+    // Ici, tu peux ajouter des scripts pour gérer la soumission du formulaire,
+    // la validation des champs, ou pour interagir avec une base de données/API.
+
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/student.css}">
+    <title>users</title>
+</head>
+<body>
+<div class="container">
+    <!-- Barre latérale -->
+    <aside class="sidebar">
+        <h2>Mon ETAB</h2>
+        <nav>
+            <ul>
+                <li><a th:href="@{/students}">&#x1F466;</i> Élèves</a></li>
+                <li><a th:href="@{/teachers}"><i class="icon-professeurs">&#x1F464;</i> Professeurs</a></li>
+                <li><a th:href="@{/users}"><i class="icon-utilisateurs">&#x1F465;</i> Utilisateurs</a></li>
+                <li><a th:href="@{/reports}"><i class="icon-rapport">&#x1F4C4;</i> Rapport</a></li>
+            </ul>
+        </nav>
+        <div class="logout">
+            <a th:href="@{/login}"><i class="icon-deconnexion">&#x1F6AA;</i> Déconnexion</a>
+        </div>
+    </aside>
+
+    <!-- Contenu principal -->
+    <div class="main-content">
+        <h1>Utilisateur(s) ( <span th:text="${users.size()}"></span> )</h1>
+        <a th:href="@{/users/add}">
+            <button class="add">Nouveau utilisateur</button>
+        </a>
+        <table>
+            <thead>
+            <tr>
+                <th>Pseudo</th>
+                <th>Date de Création</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user:${users}">
+                <td th:text="${user.pseudo}"></td>
+                <td th:text="${#dates.format(user.getCreationDate(), 'd MMMM yyyy')}"></td>
+                <td>
+                    <div class="action-buttons">
+                        <a th:href="@{/users/{id}(id=${user.id})}">
+                            <button class="btn-modifier">Modifier</button>
+                        </a>
+                        <button class="btn-supprimer btn-modal" data-target="#modal-1">Supprimer</button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Le Modal -->
+    <div th:each="user : ${users}" class="modal" id="modal-1">
+        <div class="modal-content">
+            <span class="close" data-target="#modal-1">&times;</span>
+            <h2>ATTENTION !!!</h2>
+            <p>Voulez-vous supprimer cet utilisateur ?</p>
+            <form th:action="@{/users/delete/{id}(id=${user.id})}" method="post">
+                <div class="action-buttons">
+                    <button type="button" class="btn-supprimer close" data-target="#modal-1">Non</button>
+                    <button type="submit" class="btn-modifier">Oui</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Inclusion de Font Awesome pour les icônes -->
+<script th:src="@{/script.js}" src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous">
+    // Ici vous pouvez ajouter des scripts pour gérer les actions de modification et de suppression
+    // par exemple afficher une alerte lors de la suppression ou rediriger vers une autre page pour la modification
+</script>
+
+</script>
+</body>
+</html>

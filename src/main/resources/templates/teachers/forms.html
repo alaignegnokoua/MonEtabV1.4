@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/ajouter_teacher.css}">
+    <title>Add teacher</title>
+</head>
+<body>
+<div class="container">
+    <!-- Barre latérale -->
+    <aside class="sidebar">
+        <h2>Mon ETAB</h2>
+        <nav>
+            <ul>
+                <li><a th:href="@{/students}">&#x1F466;</i> Élèves</a></li>
+                <li><a th:href="@{/teachers}"><i class="icon-professeurs">&#x1F464;</i> Professeurs</a></li>
+                <li><a th:href="@{/users}"><i class="icon-utilisateurs">&#x1F465;</i> Utilisateurs</a></li>
+                <li><a th:href="@{/reports}"><i class="icon-rapport">&#x1F4C4;</i> Rapport</a></li>
+            </ul>
+        </nav>
+        <div class="logout">
+            <a th:href="@{/login}"><i class="icon-deconnexion">&#x1F6AA;</i> Déconnexion</a>
+        </div>
+    </aside>
+
+    <!-- Conteneur principal pour le formulaire d'ajout de professeur -->
+    <div class="main-content">
+        <a th:href="@{/teachers}">
+            <button class="retour">Retour</button>
+        </a>
+        <h1 th:text="${teacher.id == null}?'Ajouter Professeur' : 'Modifier Professeur'"></h1>
+
+        <form th:object="${teacher}" th:action="@{/teachers}" method="post">
+
+            <input th:field="*{id}" type="text" hidden>
+
+            <div class="form-group">
+                <label for="firstname">Nom :</label>
+                <input th:field="*{firstName}" type="text" id="firstname" name="firstname">
+            </div>
+            <div class="form-group">
+                <label for="lastname">Prénom :</label>
+                <input th:field="*{lastName}" type="text" id="lastname" name="lastname">
+            </div>
+            <div class="form-group">
+                <label>Genre</label>
+                <label for="homme">Homme</label>
+                <input th:field="*{gender}" type="radio" id="homme" name="genre" value="MALE">
+                <label for="femme">Femme</label>
+                <input th:field="*{gender}" type="radio" id="femme" name="genre" value="FEMALE">
+                <label for="other">Autre</label>
+                <input th:field="*{gender}" type="radio" id="other" name="genre" value="OTHER">
+            </div>
+            <div class="form-group">
+                <label for="available">Disponible :</label>
+                <select id="available" name="genre">
+                    <option th:field="*{available}" value="true">Oui</option>
+                    <option th:field="*{available}" value="false">Non</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date_naissance">Date de naissance :</label>
+                <input type="date" id="date_naissance" name="date_naissance">
+            </div>
+            <div class="form-group">
+                <label for="matiere">Matiere :</label>
+                <select th:field="*{specialty}" id="matiere" name="matiere">
+                    <option value="SQL">SQL</option>
+                    <option value="ALGO">ALGO</option>
+                    <option value="MATHS">MATHS</option>
+                    <option value="JAVA">JAVA</option>
+                    <option value="PYTHON"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber">Numéro :</label>
+                <input th:field="*{phoneNumber}" type="tel" id="phoneNumber" name="phoneNumber">
+            </div>
+            <div class="form-group">
+                <label for="ville">Ville :</label>
+                <input type="text" id="ville" name="ville">
+            </div>
+            <!-- Boutons Annuler et Enregistrer -->
+            <div class="form-actions">
+                <button type="button" >Annuler</button>
+                <button type="submit" >Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Inclusion de Font Awesome pour les icônes -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<!-- Scripts JavaScript -->
+<script>
+    // Ajoutez ici les scripts pour gérer les actions des boutons Annuler et Enregistrer
+    document.querySelector('.cancel').addEventListener('click', function() {
+        // Logique pour annuler l'ajout et revenir à la page précédente ou effacer les champs
+        window.location.href = '#'; // redirige vers la page souhaitée
+    });
+
+    document.querySelector('.submit').addEventListener('click', function(event) {
+        event.preventDefault();
+        // Logique pour enregistrer le nouveau professeur
+        alert('Professeur enregistré avec succès !');
+        // Vous pouvez ensuite rediriger ou rafraîchir la page
+    });
+</script>
+</body>
+</html>

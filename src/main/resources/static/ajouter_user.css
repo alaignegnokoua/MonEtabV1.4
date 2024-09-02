@@ -1,0 +1,130 @@
+ /* Styles globaux */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+
+/* Conteneur principal */
+.container {
+    display: flex;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 1200px;
+}
+
+/* Barre latérale */
+.sidebar {
+    width: 20%;
+    border-right: 2px solid #bdc3c7;
+    padding-right: 20px;
+}
+
+.sidebar h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #3498db;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+}
+
+.sidebar .logout {
+    margin-top: 50px;
+    text-align: center;
+}
+
+/* Contenu principal pour la page Ajouter Utilisateur */
+.main-content {
+    width: 80%;
+    padding-left: 30px;
+}
+
+/* Titre de la page */
+.main-content h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Formulaire d'ajout */
+form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="date"] {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+}
+
+/* Boutons Annuler et Enregistrer */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.btn.cancel {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn.save {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.btn-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+ .retour {
+     background-color: black;
+     color: wheat;
+     padding: 5px 10px;
+     border: none;
+     cursor: pointer;
+     border-radius: 5px;
+     margin-bottom: 10px;
+     float: right;
+     margin-right: 80px;
+     margin-top: 10px;
+ }

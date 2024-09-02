@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/student.css}">
+    <title>rapport</title>
+</head>
+<body>
+<div class="container">
+    <!-- Barre latérale -->
+    <aside class="sidebar">
+        <h2>Mon ETAB</h2>
+        <nav>
+            <ul>
+                <li><a th:href="@{/students}">&#x1F466;</i> Élèves</a></li>
+                <li><a th:href="@{/teachers}"><i class="icon-professeurs">&#x1F464;</i> Professeurs</a></li>
+                <li><a th:href="@{/users}"><i class="icon-utilisateurs">&#x1F465;</i> Utilisateurs</a></li>
+                <li><a th:href="@{/reports}"><i class="icon-rapport">&#x1F4C4;</i> Rapport</a></li>
+            </ul>
+        </nav>
+        <div class="logout">
+            <a th:href="@{/login}"><i class="icon-deconnexion">&#x1F6AA;</i> Déconnexion</a>
+        </div>
+    </aside>
+
+    <!-- Contenu principal -->
+    <div class="main-content">
+        <h1>Rapport</h1>
+        <select id="choix" name="choix">
+            <option value="student">Liste des élèves</option>
+            <option value="teacher" >Liste des professeurs</option>
+            <option value="user">Liste des utilisateurs</option>
+        </select>
+
+        <!-- Boutons PDF et Excel -->
+        <div class="btn-container">
+            <button class="btn pdf">Obtenir format PDF</button>
+            <button class="btn excel">Générer un format Excel</button>
+        </div>
+    </div>
+</div>
+
+<!-- Inclusion de Font Awesome pour les icônes -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<!-- JavaScript -->
+<script>
+    // Logique pour générer les rapports
+    document.querySelector('.btn.pdf').addEventListener('click', function() {
+        alert('Génération du rapport PDF...');
+        // Code pour générer le PDF
+    });
+
+    document.querySelector('.btn.excel').addEventListener('click', function() {
+        alert('Génération du rapport Excel...');
+        // Code pour générer le fichier Excel
+    });
+</script>
+</body>
+</html>
