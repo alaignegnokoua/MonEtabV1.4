@@ -16,4 +16,8 @@ public interface SchoolService {
     List<SchoolDTO> findAll();
 
     void delete(Long id);
+
+    SchoolDTO initSchool(SchoolDTO schoolDTO);
+
+    SchoolDTO existingSchool();
 }

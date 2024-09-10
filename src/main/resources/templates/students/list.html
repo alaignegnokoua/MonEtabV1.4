@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/student.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>Students</title>
 </head>
 <body>
@@ -13,13 +14,16 @@
 <div class="container">
     <!-- Menu latéral -->
     <aside class="sidebar">
-        <h2>Mon ETAB</h2>
+        <img th:src="${school.urlLogo}" alt=""/>
+        <h2 th:text="${school.name}"></h2>
         <nav>
             <ul>
                 <li><a th:href="@{/students}">&#x1F466;</i> Élèves</a></li>
                 <li><a th:href="@{/teachers}"><i class="icon-professeurs">&#x1F464;</i> Professeurs</a></li>
                 <li><a th:href="@{/users}"><i class="icon-utilisateurs">&#x1F465;</i> Utilisateurs</a></li>
                 <li><a th:href="@{/reports}"><i class="icon-rapport">&#x1F4C4;</i> Rapport</a></li>
+                <li><a th:href="@{/}"><i class="icon-rapport fas fa-cogs"></i> Paramètres de l'application</a></li>
+                <li><a th:href="@{/schools}"><i class="icon-rapport fas fa-school"></i> Paramètres de l'école</a></li>
             </ul>
         </nav>
         <div class="logout">
@@ -35,10 +39,17 @@
             <button class="add">Nouvel élève</button>
         </a>
 
-        <div class="form-group">
-            <label for="search">Rechercher</label>
-            <input type="text" id="search" name="search">
-        </div>
+        <form method="get" th:action="@{/students/search}">
+            <div class="form-group">
+                <label for="search">Rechercher (Genre, Nom, Matricule)</label>
+                <input type="text" th:value="${query}" id="search" name="query">
+                <select name="gender" th:value="${gender}">
+                    <option value="MALE">Homme</option>
+                    <option value="FEMALE">Femme</option>
+                    <option value="OTHER">Autre</option>
+                </select>
+            </div>
+        </form>
 
         <!-- Tableau des élèves -->
         <table>

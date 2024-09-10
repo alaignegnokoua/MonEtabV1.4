@@ -8,14 +8,14 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,9 +30,11 @@ public class User implements Serializable {
 
     private Instant creationDate;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<RoleUser> roleUsers;
+    private Boolean status;
 
-    @ManyToOne
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<RoleUser> roleUsers;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     private School school;
 }

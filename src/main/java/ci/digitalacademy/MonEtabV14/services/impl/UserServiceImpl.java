@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,5 +59,23 @@ public class UserServiceImpl implements UserService {
     public void delete(Long id) {
         log.debug("Request to delete User: {}", id);
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public List<UserDTO> initUser(List<UserDTO> users) {
+        List<UserDTO > usersDto = findAll();
+        if (usersDto.isEmpty()){
+            users.forEach(user->{
+                save(user);
+            });
+        }
+        return findAll();
+    }
+
+    @Override
+    public List<UserDTO> findByCreationDateLessThanAndRoleUsersRole(Instant creationDate, String role) {
+        return userRepository.findByCreationDateLessThanAndRoleUsersRole(creationDate, role).stream().map(user -> {
+            return userMapper.toDto(user);
+        }).toList();
     }
 }

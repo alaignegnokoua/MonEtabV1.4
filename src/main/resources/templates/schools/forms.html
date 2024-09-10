@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/ajouter_student.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Enregistrement de l'école</title>
+</head>
+<body>
+<!-- Conteneur principal -->
+<div class="container">
+    <!-- Contenu principal -->
+    <main class="main-content">
+        <h1 th:text="${school.id == null ? 'Enregistrement de l école' : 'Modifier l école'}"></h1>
+
+        <!-- Formulaire pour ajouter un élève -->
+        <form th:object="${school}" th:action="@{/schools}"  method="Post" enctype="multipart/form-data">
+            <input th:field="${school.id}" type="text" hidden>
+
+            <div class="form-group">
+                <label for="name">Nom</label>
+                <input th:field="*{name}" type="text" id="name" name="name" placeholder="Entrez le nom de l'école">
+            </div>
+            <div class="form-group">
+                <label for="urlLogo">Url logo</label>
+                <input th:field="*{file}" type="file" id="urlLogo" name="urlLogo" placeholder="Entrez l'url du logo">
+            </div>
+
+            <!-- Boutons Annuler et Enregistrer -->
+            <div class="form-actions">
+                <button class="btn-annuler">Annuler</button>
+                <button class="btn-enregistrer">Enregistrer</button>
+            </div>
+        </form>
+    </main>
+</div>
+</body>
+</html>

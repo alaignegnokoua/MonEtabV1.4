@@ -70,4 +70,22 @@ public class AppSettingServiceImpl implements AppSettingService {
                     return appSettingMapper.toDto(appSetting);
                 }).toList();
     }
+
+    @Override
+    public AppSettingDTO initApp(AppSettingDTO appSettingDTO) {
+        log.debug("Request to init app {}", appSettingDTO);
+        AppSettingDTO settingDTO = existingParameter();
+        if (settingDTO == null){
+            return save(appSettingDTO);
+        }
+        return settingDTO;
+    }
+    @Override
+    public AppSettingDTO existingParameter() {
+        log.debug("Request to check existing Parameter");
+        List<AppSettingDTO> appSettingDTO = findAll();
+        //récuperation du 1er enregistrement
+        return appSettingDTO.stream().findFirst().orElse(null);
+    }
+
 }

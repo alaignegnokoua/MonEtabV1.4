@@ -54,6 +54,18 @@ public class RoleUserServiceImpl implements RoleUserService {
     }
 
     @Override
+    public List<RoleUserDTO> initRoles(List<RoleUserDTO> roleUsers) {
+        log.debug("Request to init roles {}", roleUsers);
+        List<RoleUserDTO> roles = findAll();
+        if (roles.isEmpty()){
+            roleUsers.forEach(role->{
+                save(role);
+            });
+        }
+        return findAll();
+    }
+
+    @Override
     public void delete(Long id) {
         log.debug("Request to delete role user: {}", id);
         roleUserRepository.deleteById(id);

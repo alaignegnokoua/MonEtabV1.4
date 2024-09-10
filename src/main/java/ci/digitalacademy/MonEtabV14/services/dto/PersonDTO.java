@@ -8,7 +8,7 @@ import java.time.Instant;
 
 @Getter
 @Setter
-public class PersonDTO {
+public abstract class PersonDTO {
 
     private Long id;
 

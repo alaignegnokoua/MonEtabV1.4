@@ -6,19 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/student.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>users</title>
 </head>
 <body>
 <div class="container">
     <!-- Barre latérale -->
     <aside class="sidebar">
-        <h2>Mon ETAB</h2>
+        <img th:src="${school.getUrlLogo()}" th:if="${school.id != null}"/>
+        <h2 th:text="${school.name}"></h2>
         <nav>
             <ul>
                 <li><a th:href="@{/students}">&#x1F466;</i> Élèves</a></li>
                 <li><a th:href="@{/teachers}"><i class="icon-professeurs">&#x1F464;</i> Professeurs</a></li>
                 <li><a th:href="@{/users}"><i class="icon-utilisateurs">&#x1F465;</i> Utilisateurs</a></li>
                 <li><a th:href="@{/reports}"><i class="icon-rapport">&#x1F4C4;</i> Rapport</a></li>
+                <li><a th:href="@{/}"><i class="icon-rapport fas fa-cogs"></i> Paramètres de l'application</a></li>
+                <li><a th:href="@{/schools}"><i class="icon-rapport fas fa-school"></i> Paramètres de l'école</a></li>
             </ul>
         </nav>
         <div class="logout">
@@ -32,6 +36,17 @@
         <a th:href="@{/users/add}">
             <button class="add">Nouveau utilisateur</button>
         </a>
+        <form method="get" role="search" th:action="@{/users/search}">
+            <div class="form-group">
+                <input th:value="${creationDate}" type="date" name="query">
+                <select name="role">
+                    <th:block th:each="role : ${roles}">
+                        <option th:value="${role.role}" th:text="${role.role}"></option>
+                    </th:block>
+                </select>
+                <button type="submit">Rechercher</button>
+            </div>
+        </form>
         <table>
             <thead>
             <tr>
@@ -41,7 +56,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="user:${users}">
+            <tr th:each="user, status : ${users}">
                 <td th:text="${user.pseudo}"></td>
                 <td th:text="${#dates.format(user.getCreationDate(), 'd MMMM yyyy')}"></td>
                 <td>
@@ -50,13 +65,28 @@
                             <button class="btn-modifier">Modifier</button>
                         </a>
                         <button class="btn-supprimer btn-modal" data-target="#modal-1">Supprimer</button>
+                        <button th:classappend="${user.status}" data-target="#modal-2" class="btn-modal btn-supprimer">Désactiver</button>
                     </div>
                 </td>
+                <div th:id="'modal-2'+${status.count}" class="modal">
+                    <div class="modal-content">
+                        <span class="close" data-target="#modal-1">&times;</span>
+                        <h2>ATTENTION !!!</h2>
+                        <p>Voulez-vous désactiver cet utilisateur ?</p>
+                        <form th:action="@{/users/disable/{id}(id=${user.id})}" method="post">
+                            <div class="action-buttons">
+                                <button type="button" class="btn-supprimer close" data-target="#modal-2">Non</button>
+                                <button type="submit" class="btn-modifier">Valider</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </tr>
             </tbody>
         </table>
     </div>
     <!-- Le Modal -->
+
     <div th:each="user : ${users}" class="modal" id="modal-1">
         <div class="modal-content">
             <span class="close" data-target="#modal-1">&times;</span>

@@ -1,6 +1,8 @@
 package ci.digitalacademy.MonEtabV14.controller;
 
+import ci.digitalacademy.MonEtabV14.services.SchoolService;
 import ci.digitalacademy.MonEtabV14.services.StudentService;
+import ci.digitalacademy.MonEtabV14.services.dto.SchoolDTO;
 import ci.digitalacademy.MonEtabV14.services.dto.StudentDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,12 +20,19 @@ import java.util.Optional;
 public class StudentsController {
 
     private final StudentService studentService;
+    private final SchoolService schoolService;
 
     @GetMapping
     public String showStudentPage(Model model){
         log.debug("Request to show student page");
         List<StudentDTO> students = studentService.findAll();
         model.addAttribute("students", students);
+
+        List<SchoolDTO> schools = schoolService.findAll();
+        if (!schools.isEmpty()) {
+            Optional<SchoolDTO> schoolDTO = schools.stream().findFirst();
+            model.addAttribute("school", schoolDTO.get());
+        }
 
         return "students/list";
     }
@@ -61,5 +70,15 @@ public class StudentsController {
         studentService.delete(id);
         return "redirect:/students";
 
+    }
+
+    @GetMapping("/search")
+    public String searchStudents(@RequestParam String query, @RequestParam String gender, Model model) {
+        log.debug("Request to search student {}", query);
+        List<StudentDTO> students = studentService.findByLastNameOrGenderOrMatricule(query, gender);
+        model.addAttribute("students", students);
+        model.addAttribute("query", query);
+        model.addAttribute("gender", gender);
+        return "students/list";
     }
 }

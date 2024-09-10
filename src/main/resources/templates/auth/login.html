@@ -12,16 +12,13 @@
 <!-- Conteneur central de la boîte de connexion -->
 <div class="login-container">
     <!-- Titre de la page de connexion -->
-    <h1>Mon ETAB</h1>
+    <img th:src="${school.getUrlLogo()}" th:if="${school.id != null}" alt="eee"/>
+    <h1 th:text="${school.name}" th:if="${school.id != null}"></h1>
     <!-- Formulaire de connexion -->
-    <form >
-        <!-- Champ pour l'identifiant -->
-        <input type="text" id="identifiant" placeholder="Identifiant" required>
-        <!-- Champ pour le mot de passe -->
-        <input type="password" id="mot-de-passe" placeholder="Mot de passe" required>
-        <!-- Bouton de soumission du formulaire -->
-        <button type="submit">
-            <a th:href="@{/home}">Connexion</a></button>
+    <form th:action="@{/login}" method="post">
+        <input type="text" id="identifiant" name="username" placeholder="Identifiant" required>
+        <input type="password" id="mot-de-passe" name="password" placeholder="Mot de passe" required>
+        <button type="submit">Connexion</button>
     </form>
 </div>
 </body>

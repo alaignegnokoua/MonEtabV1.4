@@ -1,6 +1,7 @@
 package ci.digitalacademy.MonEtabV14.services.impl;
 
 import ci.digitalacademy.MonEtabV14.models.Student;
+import ci.digitalacademy.MonEtabV14.models.enumeration.Gender;
 import ci.digitalacademy.MonEtabV14.repositories.StudentRepository;
 import ci.digitalacademy.MonEtabV14.services.StudentService;
 import ci.digitalacademy.MonEtabV14.services.dto.StudentDTO;
@@ -44,6 +45,20 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public StudentDTO update(StudentDTO studentDTO, Long id) {
+        return findOne(id).map(student -> {
+            student.setLastName(studentDTO.getLastName());
+            student.setFirstName(studentDTO.getFirstName());
+            student.setMatricule(studentDTO.getMatricule());
+            student.setPhoneNumberFather(studentDTO.getPhoneNumberFather());
+            student.setBirthday(studentDTO.getBirthday());
+            student.setGender(studentDTO.getGender());
+            student.setPhoneNumber(studentDTO.getPhoneNumber());
+            return save(student);
+        }).orElseThrow(() -> new IllegalArgumentException("No student found with id " + id));
+    }
+
+    @Override
     public List<StudentDTO> findAll() {
         log.debug("Request to get all Students");
         return studentRepository.findAll().stream().map(student -> {
@@ -63,5 +78,13 @@ public class StudentServiceImpl implements StudentService {
     public void delete(Long id) {
         log.debug("Request to delete Student : {}", id);
         studentRepository.deleteById(id);
+    }
+
+    @Override
+    public List<StudentDTO> findByLastNameOrGenderOrMatricule(String query, String gender) {
+        log.debug("Request to ");
+        return studentRepository.findByLastNameIgnoreCaseOrMatriculeIgnoreCaseAndGender(query, query, Gender.valueOf(gender)).stream().map(student -> {
+            return studentMapper.toDto(student);
+        }).toList();
     }
 }

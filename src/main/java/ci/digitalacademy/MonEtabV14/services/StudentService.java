@@ -11,9 +11,13 @@ public interface StudentService {
 
     StudentDTO update(StudentDTO studentDTO);
 
+    StudentDTO update(StudentDTO studentDTO, Long id);
+
     List<StudentDTO> findAll();
 
     Optional<StudentDTO> findOne(Long id);
 
     void delete(Long id);
+
+    List<StudentDTO> findByLastNameOrGenderOrMatricule(String query, String gender);
 }
