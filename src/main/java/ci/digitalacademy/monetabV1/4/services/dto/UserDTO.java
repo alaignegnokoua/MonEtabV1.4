@@ -1,6 +1,5 @@
 package ci.digitalacademy.MonEtabV14.services.dto;
 
-import ci.digitalacademy.MonEtabV14.models.RoleUser;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,7 +1,9 @@
-package ci.digitalacademy.MonEtabV14;
+package ci.digitalacademy.monetabv14;
 
 import ci.digitalacademy.MonEtabV14.services.*;
+import ci.digitalacademy.MonEtabV14.services.UserService;
 import ci.digitalacademy.MonEtabV14.services.dto.*;
+import ci.digitalacademy.MonEtabV14.services.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

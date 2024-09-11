@@ -4,7 +4,6 @@ import ci.digitalacademy.MonEtabV14.services.AppSettingService;
 import ci.digitalacademy.MonEtabV14.services.SchoolService;
 import ci.digitalacademy.MonEtabV14.services.dto.AppSettingDTO;
 import ci.digitalacademy.MonEtabV14.services.dto.SchoolDTO;
-import ci.digitalacademy.MonEtabV14.services.dto.StudentDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

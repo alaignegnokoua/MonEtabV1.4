@@ -1,6 +1,5 @@
 package ci.digitalacademy.MonEtabV14.services;
 
-import ci.digitalacademy.MonEtabV14.models.enumeration.Gender;
 import ci.digitalacademy.MonEtabV14.services.dto.TeacherDTO;
 
 import java.util.List;

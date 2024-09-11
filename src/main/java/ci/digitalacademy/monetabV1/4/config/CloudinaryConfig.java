@@ -1,4 +1,4 @@
-package ci.digitalacademy.MonEtabV14.config;
+package ci.digitalacademy.config;
 
 import com.cloudinary.Cloudinary;
 import io.github.cdimascio.dotenv.Dotenv;

@@ -1,6 +1,5 @@
 package ci.digitalacademy.MonEtabV14.controller;
 
-import ci.digitalacademy.MonEtabV14.models.School;
 import ci.digitalacademy.MonEtabV14.services.SchoolService;
 import ci.digitalacademy.MonEtabV14.services.dto.SchoolDTO;
 import lombok.RequiredArgsConstructor;

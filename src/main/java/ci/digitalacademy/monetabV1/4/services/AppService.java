@@ -3,7 +3,6 @@ package ci.digitalacademy.MonEtabV14.services;
 import ci.digitalacademy.MonEtabV14.services.dto.AppSettingDTO;
 import ci.digitalacademy.MonEtabV14.services.dto.RoleUserDTO;
 import ci.digitalacademy.MonEtabV14.services.dto.SchoolDTO;
-import ci.digitalacademy.MonEtabV14.services.dto.UserDTO;
 
 import java.util.List;
 
